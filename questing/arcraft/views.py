@@ -1,0 +1,36 @@
+from .models import Game, Quest
+from .serializers import GameSerializer, QuestSerializer, UserSerializer
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, generics
+from .serializers import GameSerializer
+from django.contrib.auth.models import User
+
+from datetime import datetime
+
+
+class GameList(generics.ListAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(users__in=(self.request.user,))
+
+    def post(self, request, format=None):
+        request.data['start_time'] = datetime.now()
+        serializer = GameSerializer(data=request.data, context={'request': request}, many=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class QuestList(generics.ListCreateAPIView):
+    queryset = Quest.objects.all()
+    serializer_class = QuestSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -1,0 +1,17 @@
+.idea/
+questing/arcraft/migrations/
+questing/media/models/*.png
+questing/media/models/*.scn
+questing/media/models/*.usd*
+
+questing/questing/secret.py
+
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+
+# C extensions
+*.so
+
+db.sqlite3
