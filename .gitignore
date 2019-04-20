@@ -4,8 +4,6 @@ questing/media/models/*.png
 questing/media/models/*.scn
 questing/media/models/*.usd*
 
-questing/questing/secret.py
-
 __pycache__/
 *.py[cod]
 *$py.class
@@ -14,4 +12,14 @@ __pycache__/
 # C extensions
 *.so
 
+#Django things
 db.sqlite3
+static
+questing/questing/secret.py
+
+#Virtual environment
+venv/
+
+#requirements file
+requirements.txt
+
