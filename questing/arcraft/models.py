@@ -34,6 +34,7 @@ class QuestItem(Model):
 class Quest(Model):
     """A recipe for a quest listing all items"""
     name = CharField(max_length=60)
+    cover = ImageField("Cover image", null=True, blank=True)
     quest_items = ManyToManyField(QuestItem, blank=True)
     author = ForeignKey(User, on_delete=CASCADE, related_name='authored_quests')
     creation_time = DateTimeField(auto_now_add=True, blank=True)
