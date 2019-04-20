@@ -6,14 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-flask = "*"
-flask-sqlalchemy = "*"
 django = "*"
 django-rest-framework = "*"
 mysqlclient = "*"
 pillow = "*"
 ipython = "*"
 django-cors-headers = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
