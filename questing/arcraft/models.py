@@ -39,7 +39,10 @@ class Quest(Model):
     author = ForeignKey(User, on_delete=CASCADE, related_name='authored_quests')
     creation_time = DateTimeField(auto_now_add=True, blank=True)
     played = IntegerField('number of times played', default=0)
+    completed = IntegerField('number of times completed', default=0)
     rating = FloatField(default=0)
+    intro = TextField(null=True, blank=True)
+    description = TextField(null=True, blank=True)
 
     def __str__(self):
         return "{} (by {})".format(self.name, self.author.username)

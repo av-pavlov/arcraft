@@ -21,7 +21,7 @@ class QuestSerializer(serializers.ModelSerializer):
         exclude = ('quest_items', )
 
 
-class QuestItemSerializer(serializers.HyperlinkedModelSerializer):
+class QuestItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestItem
         fields = ('item', 'required_items', 'possible_locations', 'text', 'descr', 'image')
