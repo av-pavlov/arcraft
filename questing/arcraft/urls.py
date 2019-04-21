@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 from .viewsets import *
-from .views import GameList, QuestList, UserList
+from .views import GameList, QuestList, MyQuestList, UserList
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -21,6 +21,6 @@ urlpatterns = [
     path('auth/', include('rest_framework.urls')),
     path('games/', GameList.as_view(), name='games'),
     path('quests/', QuestList.as_view(), name='quests'),
-    path('myquests/', QuestList.as_view(), name='myquests'),
+    path('myquests/', MyQuestList.as_view(), name='myquests'),
     path('users/', UserList.as_view(), name='users'),
 ]

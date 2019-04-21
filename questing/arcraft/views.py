@@ -36,7 +36,7 @@ class QuestList(generics.ListAPIView):
         return self.queryset.filter(~Q(author=current_user))
 
 
-class QuestList(generics.ListCreateAPIView):
+class MyQuestList(generics.ListCreateAPIView):
     queryset = Quest.objects.all()
     serializer_class = QuestSerializer
 
