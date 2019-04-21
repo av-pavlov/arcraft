@@ -1,5 +1,5 @@
-from .models import Game, Quest
-from .serializers import GameSerializer, QuestSerializer, UserSerializer
+from .models import *
+from .serializers import GameSerializer, QuestSerializer, QuestItemSerializer, UserSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -48,3 +48,12 @@ class MyQuestList(generics.ListCreateAPIView):
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class QuestItemList(generics.ListCreateAPIView):
+    queryset = QuestItem.objects.all()
+    serializer_class = QuestItemSerializer
+
+    def get_queryset(self):
+        quest = Quest.objects.get(pk=self.kwargs['quest_pk'])
+        return self.queryset.filter(quest=quest)

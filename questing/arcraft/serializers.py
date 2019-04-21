@@ -24,7 +24,7 @@ class QuestSerializer(serializers.ModelSerializer):
 class QuestItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestItem
-        fields = ('item', 'required_items', 'possible_locations', 'text', 'descr', 'image')
+        fields = '__all__'
 
 
 class GameSerializer(serializers.ModelSerializer):
