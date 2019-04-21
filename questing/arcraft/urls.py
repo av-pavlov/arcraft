@@ -21,5 +21,6 @@ urlpatterns = [
     path('auth/', include('rest_framework.urls')),
     path('games/', GameList.as_view(), name='games'),
     path('quests/', QuestList.as_view(), name='quests'),
+    path('myquests/', QuestList.as_view(), name='myquests'),
     path('users/', UserList.as_view(), name='users'),
 ]

@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from .serializers import GameSerializer
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from datetime import datetime
 
@@ -26,9 +27,22 @@ class GameList(generics.ListAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class QuestList(generics.ListAPIView):
+    queryset = Quest.objects.all()
+    serializer_class = QuestSerializer
+
+    def get_queryset(self):
+        current_user = User.objects.get(pk=2) #self.request.user
+        return self.queryset.filter(~Q(author=current_user))
+
+
 class QuestList(generics.ListCreateAPIView):
     queryset = Quest.objects.all()
     serializer_class = QuestSerializer
+
+    def get_queryset(self):
+        current_user = User.objects.get(pk=2)  # self.request.user
+        return self.queryset.filter(author=current_user)
 
 
 class UserList(generics.ListAPIView):
